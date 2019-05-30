@@ -85,3 +85,41 @@ function editTodo(el) {
   //Append span to li
   parent.appendChild(span);
 }
+
+//Update Todo item from DOM
+function updateTodo(el) {
+  var parent = el.parentNode.parentNode;
+  var inputEl = el.parentNode.previousElementSibling;
+  var span = el.parentNode;
+  var updatedValue = inputEl.value;
+
+  //Removing input box and update span
+  span.removeChild(el);
+  parent.removeChild(inputEl);
+
+  liText = document.createTextNode(updatedValue);
+
+  //Creating Delete Button
+  var delBtn = document.createElement("button");
+  delBtn.setAttribute("class", "delBtn");
+  delBtn.setAttribute("onclick", "delTodo(this)");
+  var delValue = document.createTextNode("X");
+  delBtn.appendChild(delValue);
+
+  //Creating Edit Button
+  var editBtn = document.createElement("button");
+  editBtn.setAttribute("class", "editBtn");
+  editBtn.setAttribute("onclick", "editTodo(this)");
+  var editValue = document.createTextNode("Edit");
+  editBtn.appendChild(editValue);
+
+  //Append both buttons to span
+  span.appendChild(delBtn);
+  span.appendChild(editBtn);
+
+  //Append updated text to li
+  parent.appendChild(liText);
+
+  //Append delete & edit with li
+  parent.appendChild(span);
+}
